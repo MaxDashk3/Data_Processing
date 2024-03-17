@@ -1,10 +1,9 @@
-package fileIO;
+package servlets;
 
 import java.io.*;
 
-public class FileIO implements FileIOInterface{
-
-    private String fileName = "text.txt";
+public class FileIO {
+    private String fileName = "C:/Users/Max/Documents/KNU_files/java_data/lab1/usersdb.txt";
 
     public String getFileName() {
         return fileName;
@@ -14,8 +13,7 @@ public class FileIO implements FileIOInterface{
         this.fileName = fileName;
     }
 
-    @Override
-    public void SaveToFile(Object object) {
+    public void saveToFile(Object object) {
         try {
             FileOutputStream fos = new FileOutputStream(fileName);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -26,10 +24,8 @@ public class FileIO implements FileIOInterface{
         }
     }
 
-    @Override
-    public Object LoadFromFile() {
+    public Object readFromFile() {
         Object result = null;
-
         try {
             FileInputStream fis = new FileInputStream(fileName);
             ObjectInputStream ois = new ObjectInputStream(fis);
@@ -38,7 +34,6 @@ public class FileIO implements FileIOInterface{
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-
         return result;
     }
 }
